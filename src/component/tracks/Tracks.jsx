@@ -3,15 +3,21 @@ import { connect } from "react-redux";
 import Spinner from "../layout/Spinner";
 import Track from "./Track";
 
-function Tracks({ tracks, dispatch, headings }) {
-  console.log(headings);
+function Tracks({ tracks, headings }) {
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    if (tracks.length > 0) {
+    if (tracks?.length > 0) {
       setLoading(false);
     }
-  }, [tracks]);
-  console.log(tracks);
+
+    const timeout = setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+
+    return () => clearTimeout(timeout);
+  }, []);
+
   return (
     <div className="row">
       {loading ? (
@@ -20,7 +26,7 @@ function Tracks({ tracks, dispatch, headings }) {
         <>
           <h3 className="text-center mb-4">{headings}</h3>
           {tracks.map(({ track }) => {
-            return <Track track={track} />;
+            return <Track track={track} key={track.track_id} />;
           })}
         </>
       )}
