@@ -5,7 +5,6 @@ import Track from "./Track";
 
 function Tracks({ tracks, headings }) {
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     if (tracks?.length > 0) {
       setLoading(false);

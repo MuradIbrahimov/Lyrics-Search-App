@@ -1,8 +1,10 @@
 import Tracks from "../tracks/Tracks";
+import Search from "../tracks/SearchBar";
 import axios from "axios";
 import { connect } from "react-redux";
+import { useEffect } from "react";
 function Index({ dispatch }) {
-  console.log(dispatch);
+  
   const fetchData = async () => {
     try {
       const response = await axios.get("http://localhost:3000/api/chart");
@@ -16,11 +18,15 @@ function Index({ dispatch }) {
       console.log(error);
     }
   };
-  fetchData();
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
-    <>
+    <div>
+      <Search />
       <Tracks />
-    </>
+    </div>
   );
 }
 

@@ -6,15 +6,23 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "FETCH":
-      return {
-        ...state,
-        tracks: action.payload,
-        error: null,
-      };
+      if (state.tracks.length > 0) return { ...state };
+      else
+        return {
+          ...state,
+          tracks: action.payload,
+          error: null,
+        };
     case "FETCH_ERROR":
       return {
         ...state,
         error: action.error,
+      };
+    case "SEARCH":
+      return {
+        ...state,
+        tracks: action.payload,
+        headings:"Search Results"
       };
     default:
       return state;

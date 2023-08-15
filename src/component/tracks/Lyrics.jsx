@@ -16,20 +16,16 @@ function Lyrics() {
     setLyrics(data.data.message.body.lyrics);
     if (lyrics && track) setLoading(false);
   };
-  useEffect(() => {
-    fetchLyrics(id);
-  }, []);
   const fetchTrack = async (id) => {
     const data = await axios.get(`http://localhost:3000/api/track.get=${id}`);
     setTrack(data.data.message.body.track);
     if (lyrics && track) setLoading(false);
   };
   useEffect(() => {
+    setLoading(true);
     fetchLyrics(id);
     fetchTrack(id);
-  }, []);
-  console.log(lyrics);
-  console.log(track);
+  });
   return (
     <>
       {lyrics && track ? (
