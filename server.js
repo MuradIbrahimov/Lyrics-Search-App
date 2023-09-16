@@ -3,7 +3,7 @@ import cors from "cors"; // Import the cors package
 import axios from "axios";
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // Use cors middleware to allow cross-origin requests
 app.use(cors());
