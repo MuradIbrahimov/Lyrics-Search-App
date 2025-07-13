@@ -9,27 +9,23 @@ function Tracks({ tracks, headings }) {
     if (tracks?.length > 0) {
       setLoading(false);
     }
-
-    const timeout = setTimeout(() => {
-      setLoading(false);
-    }, 3000);
-
-    return () => clearTimeout(timeout);
-  }, []);
+  }, [tracks]);
 
   return (
-    <div className="row">
+    <>
       {loading ? (
         <Spinner />
       ) : (
-        <>
+        <div className="fade-in">
           <h3 className="text-center mb-4">{headings}</h3>
-          {tracks.map(({ track }) => {
-            return <Track track={track} key={track.track_id} />;
-          })}
-        </>
+          <div className="row">
+            {tracks.map(({ track }, index) => {
+              return <Track track={track} key={track.track_id} />;
+            })}
+          </div>
+        </div>
       )}
-    </div>
+    </>
   );
 }
 

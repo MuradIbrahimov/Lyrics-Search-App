@@ -15,7 +15,9 @@ function Index({ dispatch }) {
         payload: data.message.body.track_list,
       });
     } catch (error) {
-      console.log(error);
+      console.log("API Error:", error);
+      // If API fails, the mock data from initial state will be used
+      // No need to dispatch anything as the initial state already has mock tracks
     }
   };
   useEffect(() => {

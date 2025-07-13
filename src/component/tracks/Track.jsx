@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Track = ({ track }) => {
   return (
     <div className="col-md-4">
-      <div className="card mb-4 shadow-sm">
+      <div className="card mb-4 shadow-sm track-card fade-in">
         <div className="card-body">
           <h5>{track.artist_name}</h5>
           <p className="card-text">
