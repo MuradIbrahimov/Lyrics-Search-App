@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Spinner from "../layout/Spinner";
+import AdInArticle from "../ads/AdInArticle";
+import { getAdSlot, shouldShowAds } from "../../config/adsense";
 import Moment from "react-moment";
 connect;
 function Lyrics() {
@@ -99,6 +101,10 @@ With all the styling applied.`
               {lyrics.lyrics_body}
             </div>
           </div>
+          
+          {shouldShowAds('LYRICS') && (
+            <AdInArticle adSlot={getAdSlot('IN_ARTICLE')} />
+          )}
 
           <ul className="list-group mt-3">
             <li className="list-group-item">

@@ -92,6 +92,55 @@ p {
   color: var(--text-secondary);
 }
 
+/* Main Layout with Sidebars */
+.main-layout {
+  display: flex;
+  min-height: calc(100vh - 80px); /* Subtract navbar height */
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: var(--spacing-6);
+  padding: 0 var(--spacing-4);
+}
+
+.sidebar-left,
+.sidebar-right {
+  width: 300px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 100px; /* Below navbar */
+  height: fit-content;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  padding: var(--spacing-4) 0;
+}
+
+/* Sidebar scrollbar styling */
+.sidebar-left::-webkit-scrollbar,
+.sidebar-right::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar-left::-webkit-scrollbar-track,
+.sidebar-right::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-left::-webkit-scrollbar-thumb,
+.sidebar-right::-webkit-scrollbar-thumb {
+  background: var(--primary-light);
+  border-radius: 3px;
+}
+
+.sidebar-left::-webkit-scrollbar-thumb:hover,
+.sidebar-right::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-color);
+}
+
+.main-content {
+  flex: 1;
+  min-width: 0; /* Prevents flex item from overflowing */
+}
+
 /* Container */
 .container {
   max-width: 1200px;
@@ -347,6 +396,33 @@ p {
 }
 
 /* Responsive Design */
+@media (max-width: 1200px) {
+  .sidebar-left,
+  .sidebar-right {
+    width: 250px;
+  }
+  
+  .main-layout {
+    gap: var(--spacing-4);
+  }
+}
+
+@media (max-width: 992px) {
+  .sidebar-left,
+  .sidebar-right {
+    display: none; /* Hide sidebars on tablets and mobile */
+  }
+  
+  .main-layout {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  .main-content {
+    width: 100%;
+  }
+}
+
 @media (max-width: 768px) {
   .container {
     padding: 0 var(--spacing-3);
@@ -485,6 +561,79 @@ p {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--primary-color);
+}
+
+/* Google AdSense Styling */
+.ad-container {
+  position: relative;
+  z-index: 1;
+}
+
+.ad-banner {
+  background: var(--light-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal);
+}
+
+.ad-banner:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.ad-sidebar {
+  background: var(--light-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+}
+
+.ad-in-article {
+  background: var(--light-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+}
+
+/* AdSense responsive adjustments */
+@media (max-width: 768px) {
+  .ad-sidebar {
+    position: static;
+    margin: 20px 0;
+  }
+  
+  .ad-banner {
+    margin: 20px 0;
+  }
+  
+  .ad-in-article {
+    margin: 30px 0;
+  }
+}
+
+/* AdSense loading states */
+.adsbygoogle {
+  background: var(--light-bg);
+  border-radius: var(--radius-md);
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.adsbygoogle::before {
+  content: "Advertisement";
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  font-size: 10px;
+  color: var(--text-light);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 /* Bootstrap Overrides */

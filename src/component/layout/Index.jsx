@@ -1,5 +1,7 @@
 import Tracks from "../tracks/Tracks";
 import Search from "../tracks/SearchBar";
+import AdBanner from "../ads/AdBanner";
+import { getAdSlot, shouldShowAds } from "../../config/adsense";
 import axios from "axios";
 import { connect } from "react-redux";
 import { useEffect } from "react";
@@ -27,7 +29,13 @@ function Index({ dispatch }) {
   return (
     <div>
       <Search />
+      {shouldShowAds('HOME') && (
+        <AdBanner adSlot={getAdSlot('BANNER_TOP')} />
+      )}
       <Tracks />
+      {shouldShowAds('HOME') && (
+        <AdBanner adSlot={getAdSlot('BANNER_BOTTOM')} />
+      )}
     </div>
   );
 }
